@@ -36,6 +36,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: var(--font-primary);
         background-color: var(--color-background);
         color: var(--color-text-primary);
+        min-height: 100vh;
     }
     a {
         cursor: pointer;
