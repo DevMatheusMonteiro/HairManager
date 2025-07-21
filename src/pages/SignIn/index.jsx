@@ -8,8 +8,8 @@ export default function SignIn({}) {
     <Container>
       <h1>Login</h1>
       <Form>
-        <img src={logo} alt="Hair Manager Logo" />
-        <Input label="Email" />
+        {/* <img src={logo} alt="Hair Manager Logo" /> */}
+        <Input label="Email" id="emailLogin" />
       </Form>
     </Container>
   );
