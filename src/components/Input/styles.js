@@ -13,18 +13,21 @@ export const Container = styled.div`
     .input-wrapper {
       outline: 2px solid var(--color-secondary);
     }
+    .input-wrapper svg {
+      color: var(--color-secondary);
+    }
   }
   .input-wrapper {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    background-color: var(--color-text-secondary);
+    background-color: var(--color-background);
     width: 100%;
-    height: 4rem;
+    height: 4.8rem;
     border-radius: var(--radius-small);
     padding: 0 1.2rem;
     svg {
-      color: var(--color-surface);
+      color: var(--color-text-primary);
       font-size: 2rem;
     }
     input {
@@ -33,7 +36,9 @@ export const Container = styled.div`
       background-color: transparent;
       border: none;
       outline: none;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+      font-family: var(--font-secondary);
+      color: var(--color-text-primary);
     }
   }
 `;

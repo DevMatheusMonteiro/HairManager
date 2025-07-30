@@ -5,28 +5,43 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  padding: 2rem;
   .form-container {
-    margin-top: 8rem;
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-content: center;
+    place-items: center;
+    padding: 2rem 4rem;
     width: 100%;
     max-width: 500px;
     background-color: var(--color-surface);
     border-radius: var(--radius-large);
 
-    .title-logo {
-      h1 {
-        text-transform: uppercase;
-      }
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      img {
-        width: 100%;
-        max-width: 100px;
-      }
+    h1 {
+      text-transform: uppercase;
+      font-family: var(--font-secondary);
+    }
+    img {
+      width: 100%;
+      max-width: 120px;
+    }
+  }
+  .register-link {
+    margin-top: 2rem;
+    a {
+      font-weight: 600;
     }
   }
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  width: 100%;
+
+  .button-component {
+    margin-top: 2rem;
+  }
+`;

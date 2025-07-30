@@ -40,12 +40,11 @@ export const GlobalStyles = createGlobalStyle`
     }
     a {
         cursor: pointer;
-        transition: color var(--transition-fast), background-color var(--transition-fast);
+        transition: color var(--transition-fast);
         text-decoration: none;
         color: var(--color-primary);
     }
     a:hover {
         color: var(--color-secondary);
-        box-shadow: var(--shadow-soft);
     }
 `;
