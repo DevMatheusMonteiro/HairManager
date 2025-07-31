@@ -33,7 +33,7 @@ export default function SignUp() {
             id="confirmPasswordRegister"
             type="password"
           />
-          <Button type="submit">Entrar</Button>
+          <Button type="submit">Registrar</Button>
         </Form>
         <p className="login-link">
           Ja tem uma conta? Faça o <Link to="/">login!</Link>
