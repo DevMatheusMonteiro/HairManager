@@ -43,8 +43,13 @@ export const GlobalStyles = createGlobalStyle`
         transition: color var(--transition-fast);
         text-decoration: none;
         color: var(--color-primary);
+        outline: none;
+        border-radius: var(--radius-small);
     }
     a:hover {
         color: var(--color-secondary);
+    }
+    a:focus {
+        outline: 2px solid var(--color-secondary);
     }
 `;

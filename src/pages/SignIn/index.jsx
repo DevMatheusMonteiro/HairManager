@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-export default function SignIn({}) {
+export default function SignIn() {
   return (
     <Container>
       <div className="form-container">
