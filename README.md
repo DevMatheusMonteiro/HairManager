@@ -45,7 +45,7 @@ git clone https://github.com/DevMatheusMonteiro/HairManager
 2. Acesse o diretório do projeto:
 
 ```bash
-cd hair-manager
+cd HairManager
 ```
 
 3. Instale as dependências:
