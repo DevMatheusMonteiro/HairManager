@@ -39,7 +39,7 @@ O design do projeto foi construído com base na abordagem **Mobile First**, gara
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/hair-manager.git
+git clone https://github.com/DevMatheusMonteiro/HairManager
 ```
 
 2. Acesse o diretório do projeto:
