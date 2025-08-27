@@ -8,26 +8,27 @@ export const Container = styled.div`
 
   &:has(input:focus) {
     label {
-      color: var(--color-secondary);
+      color: ${({ theme }) => theme.colors.secondary};
     }
     .input-wrapper {
-      outline: 2px solid var(--color-secondary);
+      outline: 1px solid ${({ theme }) => theme.colors.secondary};
     }
     .input-wrapper svg {
-      color: var(--color-secondary);
+      color: ${({ theme }) => theme.colors.secondary};
     }
   }
   .input-wrapper {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    background-color: var(--color-background);
+    background-color: ${({ theme }) => theme.colors.surface};
+    border: 1px solid ${({ theme }) => theme.colors.border};
     width: 100%;
-    height: 4.8rem;
-    border-radius: var(--radius-small);
+    height: 4rem;
+    border-radius: ${({ theme }) => theme.radius.medium};
     padding: 0 1.2rem;
     svg {
-      color: var(--color-text-primary);
+      color: ${({ theme }) => theme.colors.textSecondary};
       font-size: 2rem;
     }
     input {
@@ -36,9 +37,9 @@ export const Container = styled.div`
       background-color: transparent;
       border: none;
       outline: none;
-      font-size: 1.6rem;
-      font-family: var(--font-secondary);
-      color: var(--color-text-primary);
+      font-size: clamp(1.4rem, 3vw, 1.6rem);
+      font-family: ${({ theme }) => theme.fonts.secondary};
+      color: ${({ theme }) => theme.colors.textPrimary};
     }
   }
 `;

@@ -27,7 +27,7 @@ export default function SignIn() {
           />
           <Button type="submit">Entrar</Button>
         </Form>
-        <p className="register-link">
+        <p className="link">
           Não tem uma conta? <Link to="/signup">Cadastre-se!</Link>
         </p>
       </div>

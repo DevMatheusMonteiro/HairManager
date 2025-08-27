@@ -2,25 +2,28 @@ import styled from "styled-components";
 
 export const Container = styled.button`
   cursor: pointer;
-  transition: opacity var(--transition-fast);
-  font-family: var(--font-secondary);
+  transition: background ${({ theme }) => theme.transitions.fast};
+  font-family: ${({ theme }) => theme.fonts.secondary};
   font-weight: 600;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 1.6rem;
-  height: 4.8rem;
+  height: 4rem;
   width: 100%;
-  background-color: var(--color-primary);
-  color: var(--color-text-primary);
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) =>
+    theme.title === "light"
+      ? `${theme.colors.background}`
+      : `${theme.colors.textPrimary}`};
   font-size: 2rem;
   border: none;
-  border-radius: var(--radius-small);
+  border-radius: ${({ theme }) => theme.radius.medium};
   outline: none;
   &:hover {
-    opacity: 0.8;
+    background: ${({ theme }) => theme.colors.primaryHover};
   }
   &:focus {
-    outline: 2px solid var(--color-secondary);
+    outline: 1px solid ${({ theme }) => theme.colors.accent};
   }
 `;

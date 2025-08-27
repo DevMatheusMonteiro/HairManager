@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem;
   .form-container {
     display: grid;
@@ -14,30 +14,34 @@ export const Container = styled.div`
       "title"
       "logo"
       "form"
-      "register-link";
+      "link";
     place-content: center;
     place-items: center;
     padding: 2rem 4rem;
     width: 100%;
     max-width: 500px;
-    background-color: var(--color-surface);
-    border-radius: var(--radius-large);
+    background-color: ${({ theme }) => theme.colors.surface};
+    border-radius: ${({ theme }) => theme.radius.large};
+    border: 1px solid ${({ theme }) => theme.colors.border};
+    box-shadow: ${({ theme }) => theme.shadows.md};
 
     h1 {
       font-size: clamp(3.2rem, 5vw, 4.8rem);
       grid-area: title;
       text-transform: uppercase;
-      font-family: var(--font-secondary);
+      font-family: ${({ theme }) => theme.fonts.secondary};
     }
     img {
       grid-area: logo;
       width: 100%;
       max-width: 150px;
     }
-    .register-link {
-      grid-area: register-link;
+    .link {
+      grid-area: link;
+      text-align: center;
       margin-top: 2.4rem;
       a {
+        color: ${({ theme }) => theme.colors.primary};
         font-weight: 600;
       }
     }
@@ -47,13 +51,13 @@ export const Container = styled.div`
       grid-template-areas:
         "title title"
         "logo form"
-        "register-link register-link";
+        "link link";
       row-gap: 3.2rem;
       max-width: 1000px;
       img {
         max-width: 300px;
       }
-      .register-link {
+      .link {
         margin-top: 0;
       }
     }
