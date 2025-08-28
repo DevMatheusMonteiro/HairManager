@@ -1,77 +1,81 @@
 import styled from "styled-components";
 import banner from "../../assets/barber-shop.jpeg";
 
-export const Container = styled.div`
-  main {
-    h1,
-    h2,
-    h3 {
-      font-family: ${({ theme }) => theme.fonts.secondary};
-    }
+export const Container = styled.main`
+  h1,
+  h2,
+  h3 {
+    font-family: ${({ theme }) => theme.fonts.secondary};
+  }
+  .dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    /* background: ${({ theme }) => theme.colors.background}; */
+    background: red;
+  }
+  #hero {
+    height: 500px;
+    background-image: url(${banner});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    position: relative;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-    #hero {
-      height: 500px;
-      background-image: url(${banner});
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center top;
-      position: relative;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-
-      .hero-wrapper {
-        padding: 2.4rem 2rem;
+    .hero-wrapper {
+      padding: 2.4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      .container-title {
+        height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
+        max-width: 600px;
         align-items: center;
-        height: 100%;
-        .container-title {
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          max-width: 600px;
-          align-items: center;
-          position: relative;
-          z-index: 1;
-          h1 {
-            color: ${({ theme }) => theme.colors.primary};
-            font-size: 3.2rem;
-          }
-          h2 {
-            margin-top: 2.4rem;
-            font-size: 2.4rem;
-            color: ${({ theme }) => theme.colors.secondary};
-          }
-        }
-
-        .container-buttons {
-          position: relative;
-          z-index: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 2rem;
-
-          .button-component {
-            font-size: 1.4rem;
-            max-width: 200px;
-          }
-        }
-      }
-
-      &::before {
+        position: relative;
         z-index: 1;
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: ${({ theme }) =>
-          theme.title == "light"
-            ? `${theme.colors.accent}`
-            : `${theme.colors.background}`};
-        opacity: 0.8;
+        h1 {
+          color: ${({ theme }) => theme.colors.primary};
+          font-size: 3.2rem;
+        }
+        h2 {
+          margin-top: 2.4rem;
+          font-size: 2.4rem;
+          color: ${({ theme }) => theme.colors.secondary};
+        }
       }
+
+      .container-buttons {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        .button-component {
+          font-size: 1.4rem;
+          max-width: 200px;
+        }
+      }
+    }
+
+    &::before {
+      z-index: 1;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: ${({ theme }) =>
+        theme.title == "light"
+          ? `${theme.colors.accent}`
+          : `${theme.colors.background}`};
+      opacity: 0.8;
     }
   }
 

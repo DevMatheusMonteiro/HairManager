@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.header`
+  grid-area: header;
   background: ${({ theme }) => theme.colors.surface};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   .wrapper {

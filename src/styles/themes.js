@@ -4,6 +4,7 @@ export const darkTheme = {
   title: "dark",
   colors: {
     background: "#121212",
+    backgroundWeakOpacity: "#1212128e",
     surface: "#1E1E1E",
     primary: "#E63946",
     primaryHover: "#e63947b2",
@@ -39,6 +40,7 @@ export const lightTheme = {
   title: "light",
   colors: {
     background: "#FFFFFF",
+    backgroundWeakOpacity: "#ffffff33",
     surface: "#F5F5F5",
     primary: "#E63946",
     primaryHover: "#e63947b2",
