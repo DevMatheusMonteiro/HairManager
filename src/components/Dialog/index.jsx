@@ -1,5 +1,5 @@
 import { Container } from "./styles";
 
-export function Dialog({ children }) {
-  return <Container>{children}</Container>;
+export function Dialog({ open = false, setOpen, children }) {
+  return <Container $open={open}>{children}</Container>;
 }

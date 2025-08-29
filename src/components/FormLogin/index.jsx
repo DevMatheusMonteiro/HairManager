@@ -2,13 +2,15 @@ import { Container, Form } from "./styles";
 import logo from "../../assets/logo.png";
 import { Input } from "../Input";
 import { Button } from "../Button";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaWindowClose } from "react-icons/fa";
 import { Link } from "react-router-dom";
-export function FormLogin({}) {
+import { IconButton } from "../IconButton";
+export function FormLogin({ open = false, setOpen }) {
   return (
-    <Container>
+    <Container $open={open}>
       <div className="form-container">
-        <h1>Login</h1>
+        <IconButton icon={FaWindowClose} onClick={setOpen} />
+        <h2>Login</h2>
         <Form onSubmit={(e) => e.preventDefault()}>
           <Input icon={FaEnvelope} label="Email" id="emailLogin" />
           <Input
