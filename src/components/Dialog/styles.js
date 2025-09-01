@@ -5,14 +5,11 @@ export const Container = styled.div`
   inset: 0;
   background: ${({ theme }) => theme.colors.backgroundWeakOpacity};
   padding: 2rem;
-  z-index: 9999;
-
+  z-index: 999999;
   display: flex;
-  justify-content: center;
-  align-items: center;
   pointer-events: ${({ $open }) => ($open ? "auto" : "none")};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
-  scale: ${({ $open }) => ($open ? 1 : 0.8)};
-  transition: scale ${({ theme }) => theme.transitions.normal},
-    opacity ${({ theme }) => theme.transitions.normal};
+  transition: opacity ${({ theme }) => theme.transitions.normal};
+  justify-content: center;
+  align-items: center;
 `;

@@ -6,8 +6,11 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdNotificationsActive, MdComputer } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { TfiAgenda } from "react-icons/tfi";
+import { useAuthModal } from "../../hooks/authModalContext";
 
 export default function Home() {
+  const { setOpenRegisterForm, setChosenRole } = useAuthModal();
+
   return (
     <Container>
       <section id="hero">
@@ -22,8 +25,22 @@ export default function Home() {
             </h2>
           </div>
           <div className="container-buttons">
-            <Button>Sou Cliente</Button>
-            <Button>Sou Barbearia/Salão</Button>
+            <Button
+              onClick={() => {
+                setOpenRegisterForm(true);
+                setChosenRole("customer");
+              }}
+            >
+              Sou Cliente
+            </Button>
+            <Button
+              onClick={() => {
+                setOpenRegisterForm(true);
+                setChosenRole("business");
+              }}
+            >
+              Sou Barbearia/Salão
+            </Button>
           </div>
         </div>
       </section>
@@ -125,8 +142,22 @@ export default function Home() {
             beleza!
           </h2>
           <div className="container-buttons">
-            <Button>Sou Cliente</Button>
-            <Button>Sou Barbearia/Salão</Button>
+            <Button
+              onClick={() => {
+                setOpenRegisterForm(true);
+                setChosenRole("customer");
+              }}
+            >
+              Sou Cliente
+            </Button>
+            <Button
+              onClick={() => {
+                setOpenRegisterForm(true);
+                setChosenRole("business");
+              }}
+            >
+              Sou Barbearia/Salão
+            </Button>
           </div>
         </div>
       </section>
