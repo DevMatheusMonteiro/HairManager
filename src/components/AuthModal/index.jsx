@@ -2,7 +2,7 @@ import { Dialog } from "../Dialog";
 import { LoginForm } from "../LoginForm";
 import { RegistrationForm } from "../RegistrationForm";
 import { RoleSelectionButtons } from "../RoleSelectionButtons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 export function AuthModal({
   openDialog,
@@ -16,25 +16,11 @@ export function AuthModal({
   chosenRole,
   setChosenRole,
 }) {
-  const dialogRef = useRef();
-
   function handleCloseDialog() {
     openLoginForm && setOpenLoginForm(false);
     openRegisterForm && setOpenRegisterForm(false);
     openRoleSelection && setOpenRoleSelection(false);
     setOpenDialog(false);
-  }
-
-  function handleClickOutside(e) {
-    if (dialogRef.current && dialogRef.current == e.target) {
-      handleCloseDialog();
-    }
-  }
-
-  function handleKeyDown(e) {
-    if (e.key === "Escape") {
-      handleCloseDialog();
-    }
   }
 
   function handleOpenLoginForm() {
@@ -55,8 +41,6 @@ export function AuthModal({
     openLoginForm && setOpenLoginForm(false);
   }
 
-  openDialog && (window.onkeydown = handleKeyDown);
-
   useEffect(() => {
     openLoginForm && handleOpenLoginForm();
     openRoleSelection && handleOpenRoleSelection();
@@ -64,11 +48,7 @@ export function AuthModal({
   }, [openLoginForm, openRoleSelection, openRegisterForm]);
 
   return (
-    <Dialog
-      open={openDialog}
-      ref={dialogRef}
-      handleClickOutside={handleClickOutside}
-    >
+    <Dialog open={openDialog} onClose={handleCloseDialog}>
       <LoginForm
         open={openLoginForm}
         onClose={handleCloseDialog}
