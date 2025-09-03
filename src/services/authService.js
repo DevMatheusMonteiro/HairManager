@@ -17,24 +17,6 @@ export async function register({
 
   const userId = authData.user.id;
 
-  const { data: profileData, error: profileError } = await supabase
-    .from("profiles")
-    .insert([{ id: userId, email, name, telephone, role }]);
-
-  if (profileError) throw profileError;
-
-  let roleTable = null;
-  if (role === "admin") roleTable = "admins";
-  else if (role === "business") roleTable = "businesses";
-  else if (role === "customer") roleTable = "customers";
-
-  if (roleTable) {
-    const { error: roleError } = await supabase
-      .from(roleTable)
-      .insert([{ id: userId, ...extra }]);
-    if (roleError) throw roleError;
-  }
-
   return profileData;
 }
 
