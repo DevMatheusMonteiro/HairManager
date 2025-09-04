@@ -1,35 +1,25 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import { findUserById } from "../services/userService";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [profile, setProfile] = useState();
-  const [loading, setLoading] = useState(true);
 
   async function fetchProfile() {
     if (!user) {
       setProfile(null);
-      setLoading(false);
       return;
     }
 
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-    !error && setProfile(data);
-    setLoading(false);
+    const data = await findUserById(user.id);
+    setProfile(data);
   }
 
   async function getSession() {
-    const { data, error } = await supabase.auth.getSession();
-    if (error) {
-      console.error("Erro ao buscar sessão:", error.message);
-      return;
-    }
+    const { data } = await supabase.auth.getSession();
     setUser(data.session?.user ?? null);
   }
 
@@ -49,7 +39,7 @@ export function AuthProvider({ children }) {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading }}>
+    <AuthContext.Provider value={{ user, profile }}>
       {children}
     </AuthContext.Provider>
   );

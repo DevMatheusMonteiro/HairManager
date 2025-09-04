@@ -1,4 +1,5 @@
 import { supabase } from "../supabaseClient";
+import { createUser } from "./userService";
 
 export async function register({
   email,
@@ -13,9 +14,18 @@ export async function register({
     password,
   });
 
+  const userId = authData.user?.id;
+
   if (authError) throw authError;
 
-  const userId = authData.user.id;
+  const profileData = await createUser({
+    id: userId,
+    email,
+    telephone,
+    name,
+    role,
+    extra,
+  });
 
   return profileData;
 }
