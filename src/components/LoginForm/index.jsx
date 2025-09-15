@@ -3,11 +3,13 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { FaEnvelope, FaLock, FaWindowClose } from "react-icons/fa";
 import { IconButton } from "../IconButton";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { TextButton } from "../TextButton";
 
+import { useAuth } from "../../hooks/authContext";
+
 const initialState = {
-  name: "",
+  email: "",
   password: "",
 };
 
@@ -27,12 +29,23 @@ export function LoginForm({
   onClose,
   handleOpenRegistrationForm,
 }) {
+  const { login } = useAuth();
   const containerRef = useRef();
   const inputRef = useRef();
   const [formState, dispatch] = useReducer(reducer, initialState);
 
   function handleChangeInput(field, value) {
     dispatch({ type: "CHANGE_INPUT", field: field, value: value });
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    try {
+      if (formState.email.trim() != "" && formState.password.trim() != !"") {
+        await login(formState);
+        onClose();
+      }
+    } catch (error) {}
   }
 
   useEffect(() => {
@@ -49,16 +62,16 @@ export function LoginForm({
     <Container $open={open} ref={containerRef}>
       <IconButton id="closeButton" icon={FaWindowClose} onClick={onClose} />
       <h2>Login</h2>
-      <Form onSubmit={(e) => e.preventDefault()}>
+      <Form onSubmit={handleLogin}>
         <Input
           ref={inputRef}
           disabled={!open}
           type="email"
-          value={formState.name}
+          value={formState.email}
           icon={FaEnvelope}
           label="Email"
           id="emailLogin"
-          onChange={(e) => handleChangeInput("name", e.target.value)}
+          onChange={(e) => handleChangeInput("email", e.target.value)}
         />
         <Input
           disabled={!open}

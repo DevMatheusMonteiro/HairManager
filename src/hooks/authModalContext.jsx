@@ -1,9 +1,11 @@
 import { createContext, useState, useContext } from "react";
 import { AuthModal } from "../components/AuthModal";
+import { useAuth } from "./authContext";
 
 const AuthModalContext = createContext();
 
 export function AuthModalProvider({ children }) {
+  const { user } = useAuth();
   const [openDialog, setOpenDialog] = useState(false);
   const [openLoginForm, setOpenLoginForm] = useState(false);
   const [openRegisterForm, setOpenRegisterForm] = useState(false);
@@ -26,18 +28,20 @@ export function AuthModalProvider({ children }) {
       }}
     >
       {children}
-      <AuthModal
-        openDialog={openDialog}
-        setOpenDialog={setOpenDialog}
-        openLoginForm={openLoginForm}
-        setOpenLoginForm={setOpenLoginForm}
-        openRegisterForm={openRegisterForm}
-        setOpenRegisterForm={setOpenRegisterForm}
-        openRoleSelection={openRoleSelection}
-        setOpenRoleSelection={setOpenRoleSelection}
-        chosenRole={chosenRole}
-        setChosenRole={setChosenRole}
-      />
+      {!user && (
+        <AuthModal
+          openDialog={openDialog}
+          setOpenDialog={setOpenDialog}
+          openLoginForm={openLoginForm}
+          setOpenLoginForm={setOpenLoginForm}
+          openRegisterForm={openRegisterForm}
+          setOpenRegisterForm={setOpenRegisterForm}
+          openRoleSelection={openRoleSelection}
+          setOpenRoleSelection={setOpenRoleSelection}
+          chosenRole={chosenRole}
+          setChosenRole={setChosenRole}
+        />
+      )}
     </AuthModalContext.Provider>
   );
 }

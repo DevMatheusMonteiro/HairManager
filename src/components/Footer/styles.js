@@ -6,11 +6,12 @@ export const Container = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   background: ${({ theme }) => theme.colors.surface};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
-  gap: 1.6rem;
+  gap: 1rem;
   p {
+    font-size: 1.4rem;
     font-weight: bold;
   }
 
@@ -23,6 +24,10 @@ export const Container = styled.footer`
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: opacity ${({ theme }) => theme.transitions.fast};
+    }
+    a:hover {
+      opacity: 0.7;
     }
   }
 `;

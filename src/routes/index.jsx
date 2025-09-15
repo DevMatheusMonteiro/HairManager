@@ -1,14 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
 
+import AuthRoutes from "./auth.routes";
 import AppRoutes from "./app.routes";
-import { AuthModalProvider } from "../hooks/authModalContext";
+import { useAuth } from "../hooks/authContext";
 
 export default function Routes() {
-  return (
-    <BrowserRouter>
-      <AuthModalProvider>
-        <AppRoutes />
-      </AuthModalProvider>
-    </BrowserRouter>
-  );
+  const { user } = useAuth();
+  return <BrowserRouter>{user ? <AppRoutes /> : <AuthRoutes />}</BrowserRouter>;
 }

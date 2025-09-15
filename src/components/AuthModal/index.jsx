@@ -1,6 +1,6 @@
 import { Dialog } from "../Dialog";
 import { LoginForm } from "../LoginForm";
-import { RegistrationForm } from "../RegistrationForm";
+import { RegisterForm } from "../RegisterForm";
 import { RoleSelectionButtons } from "../RoleSelectionButtons";
 import { useEffect } from "react";
 
@@ -54,7 +54,7 @@ export function AuthModal({
         onClose={handleCloseDialog}
         handleOpenRegistrationForm={handleOpenRoleSelection}
       />
-      <RegistrationForm
+      <RegisterForm
         open={openRegisterForm}
         onClose={handleCloseDialog}
         handleOpenLoginForm={handleOpenLoginForm}

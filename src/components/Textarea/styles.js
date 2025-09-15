@@ -1,7 +1,8 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  height: 100px;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -17,37 +18,34 @@ export const Container = styled.div`
     margin: 0;
   }
 
-  &:has(input:focus) {
+  &:has(textarea:focus) {
     label {
       color: ${({ theme }) => theme.colors.secondary};
     }
 
-    .input-wrapper {
+    .textarea-wrapper {
       outline: 1px solid ${({ theme }) => theme.colors.secondary};
     }
-    .input-wrapper svg {
+    .textarea-wrapper svg {
       color: ${({ theme }) => theme.colors.secondary};
     }
   }
-  .input-wrapper {
-    &.error {
-      outline: 1px solid ${({ theme }) => theme.colors.primary};
-    }
-
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+  .textarea-wrapper {
+    /* display: flex;
+    align-items: center; */
+    /* gap: 0.8rem; */
     background-color: ${({ theme }) => theme.colors.surface};
     border: 1px solid ${({ theme }) => theme.colors.border};
     width: 100%;
-    height: 4rem;
+    height: 100%;
     border-radius: ${({ theme }) => theme.radius.medium};
-    padding: 0 1.2rem;
     svg {
       color: ${({ theme }) => theme.colors.textSecondary};
       font-size: 2rem;
     }
-    input {
+    textarea {
+      padding: 1.2rem;
+      resize: none;
       width: 100%;
       height: 100%;
       background-color: transparent;
@@ -57,11 +55,5 @@ export const Container = styled.div`
       font-family: ${({ theme }) => theme.fonts.secondary};
       color: ${({ theme }) => theme.colors.textPrimary};
     }
-  }
-  .error-message {
-    font-size: 1.2rem;
-    color: ${({ theme }) => theme.colors.primary};
-    font-weight: bold;
-    letter-spacing: 1px;
   }
 `;

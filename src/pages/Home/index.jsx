@@ -2,164 +2,136 @@ import { Button } from "../../components/Button";
 import { Container } from "./styles";
 import { BsFillPersonFill } from "react-icons/bs";
 import { LuMapPin, LuNotepadText } from "react-icons/lu";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarAlt, FaSearch } from "react-icons/fa";
 import { MdNotificationsActive, MdComputer } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { TfiAgenda } from "react-icons/tfi";
-import { useAuthModal } from "../../hooks/authModalContext";
+import { Input } from "../../components/Input";
+
+export const salons = [
+  {
+    id: 1,
+    name: "Barbearia Estilo",
+    city: "São Paulo",
+    rating: 4.8,
+    services: [
+      { id: 101, name: "Corte Masculino", price: 50, duration: 30 },
+      { id: 102, name: "Barba Completa", price: 35, duration: 25 },
+      { id: 103, name: "Sobrancelha", price: 20, duration: 15 },
+    ],
+  },
+  {
+    id: 2,
+    name: "Salão Glamour",
+    city: "Rio de Janeiro",
+    rating: 4.6,
+    services: [
+      { id: 201, name: "Corte Feminino", price: 70, duration: 45 },
+      { id: 202, name: "Escova", price: 60, duration: 40 },
+      { id: 203, name: "Hidratação", price: 80, duration: 50 },
+    ],
+  },
+  {
+    id: 3,
+    name: "Studio Cabelo & Arte",
+    city: "Belo Horizonte",
+    rating: 4.7,
+    services: [
+      { id: 301, name: "Corte Unissex", price: 65, duration: 40 },
+      { id: 302, name: "Coloração", price: 150, duration: 90 },
+      { id: 303, name: "Luzes", price: 200, duration: 120 },
+    ],
+  },
+  {
+    id: 4,
+    name: "Beleza Express",
+    city: "Curitiba",
+    rating: 4.5,
+    services: [
+      { id: 401, name: "Corte Masculino", price: 45, duration: 25 },
+      { id: 402, name: "Barba", price: 30, duration: 20 },
+      { id: 403, name: "Massagem Capilar", price: 50, duration: 30 },
+    ],
+  },
+  {
+    id: 5,
+    name: "Spa Hair Lux",
+    city: "Porto Alegre",
+    rating: 4.9,
+    services: [
+      { id: 501, name: "Corte Feminino", price: 90, duration: 50 },
+      { id: 502, name: "Escova Progressiva", price: 250, duration: 120 },
+      { id: 503, name: "Penteado Festa", price: 180, duration: 60 },
+    ],
+  },
+  {
+    id: 6,
+    name: "Clube da Barba",
+    city: "Brasília",
+    rating: 4.4,
+    services: [
+      { id: 601, name: "Corte Masculino", price: 55, duration: 30 },
+      { id: 602, name: "Barba e Navalha", price: 40, duration: 25 },
+      { id: 603, name: "Pigmentação de Barba", price: 70, duration: 35 },
+    ],
+  },
+  {
+    id: 7,
+    name: "Salão Diva Hair",
+    city: "Salvador",
+    rating: 4.6,
+    services: [
+      { id: 701, name: "Corte Feminino", price: 75, duration: 45 },
+      { id: 702, name: "Escova Modelada", price: 80, duration: 50 },
+      { id: 703, name: "Hidratação + Nutrição", price: 120, duration: 60 },
+    ],
+  },
+  {
+    id: 8,
+    name: "Beleza Natural",
+    city: "Recife",
+    rating: 4.5,
+    services: [
+      { id: 801, name: "Corte Cacheado", price: 85, duration: 60 },
+      { id: 802, name: "Finalização", price: 70, duration: 45 },
+      { id: 803, name: "Tratamento Capilar", price: 110, duration: 70 },
+    ],
+  },
+  {
+    id: 9,
+    name: "Estilo Vip Barber",
+    city: "Fortaleza",
+    rating: 4.7,
+    services: [
+      { id: 901, name: "Corte Fade", price: 60, duration: 35 },
+      { id: 902, name: "Barba Completa", price: 40, duration: 25 },
+      { id: 903, name: "Sobrancelha Navalha", price: 25, duration: 15 },
+    ],
+  },
+  {
+    id: 10,
+    name: "Studio Fashion Hair",
+    city: "Florianópolis",
+    rating: 4.8,
+    services: [
+      { id: 1001, name: "Corte Feminino", price: 85, duration: 50 },
+      { id: 1002, name: "Luzes", price: 220, duration: 120 },
+      { id: 1003, name: "Escova", price: 70, duration: 40 },
+    ],
+  },
+];
 
 export default function Home() {
-  const { setOpenRegisterForm, setChosenRole } = useAuthModal();
-
   return (
     <Container>
-      <section id="hero">
-        <div className="hero-wrapper">
-          <div className="container-title">
-            <h1>
-              Conectando clientes às melhores barbearias e salões de beleza.
-            </h1>
-            <h2>
-              Agende seu horário online ou cadastre seu salão e conquiste novos
-              clientes.
-            </h2>
-          </div>
-          <div className="container-buttons">
-            <Button
-              onClick={() => {
-                setOpenRegisterForm(true);
-                setChosenRole("customer");
-              }}
-            >
-              Sou Cliente
-            </Button>
-            <Button
-              onClick={() => {
-                setOpenRegisterForm(true);
-                setChosenRole("business");
-              }}
-            >
-              Sou Barbearia/Salão
-            </Button>
-          </div>
-        </div>
-      </section>
-      <section id="about">
-        <h2>Como funciona</h2>
-        <div className="wrapper-about">
-          <div className="customers">
-            <h3>Para Clientes</h3>
-            <ul>
-              <li>
-                <span>
-                  <BsFillPersonFill />
-                </span>
-                <span>Cadastre-se Gratuitamente</span>
-              </li>
-              <li>
-                <span>
-                  <LuMapPin />
-                </span>
-                <span>Encontre barbearias/salões próximos</span>
-              </li>
-              <li>
-                <span>
-                  <FaRegCalendarAlt />
-                </span>
-                <span>Escolha serviço e horário</span>
-              </li>
-              <li>
-                <span>
-                  <MdNotificationsActive />
-                </span>
-                <span>Confirme e receba lembrete</span>
-              </li>
-            </ul>
-          </div>
-          <div className="business">
-            <h3>Para Negócios</h3>
-            <ul>
-              <li>
-                <span>
-                  <IoMdHome />
-                </span>
-                <span>Cadastre seu salão</span>
-              </li>
-
-              <li>
-                <span>
-                  <LuNotepadText />
-                </span>
-                <span>Adicione seus serviços e horários</span>
-              </li>
-
-              <li>
-                <span>
-                  <TfiAgenda />
-                </span>
-                <span>Receba novos agendamentos</span>
-              </li>
-
-              <li>
-                <span>
-                  <MdComputer />
-                </span>
-                <span>Gerencie sua agenda online</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section id="benefits">
-        <h2>Benefícios</h2>
-        <div className="benefits-wrapper">
-          <div className="customer-benefits">
-            <h3>Para Clientes</h3>
-            <ul>
-              <li>Agende seu horário com poucos cliques</li>
-              <li>Evite filas e esperas desnecessárias</li>
-              <li>Receba lembretes automáticos do seu agendamento</li>
-              <li>Descubra novas barbearias e salões próximos</li>
-              <li>Gerencie seus agendamentos em um só lugar</li>
-            </ul>
-          </div>
-          <div className="business-benefits">
-            <h3>Para negócios</h3>
-            <ul>
-              <li>Controle fácil da agenda de clientes</li>
-              <li>Reduza faltas com lembretes automáticos</li>
-              <li>Ganha mais visibilidade com novos clientes</li>
-              <li>Otimize seu tempo e atenda mais pessoas</li>
-              <li>Acompanhe relatórios e desempenho do seu negócio</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section id="cta">
-        <div className="cta-wrapper">
-          <h2>
-            Cadastre-se agora e faça parte da revolução dos agendamentos de
-            beleza!
-          </h2>
-          <div className="container-buttons">
-            <Button
-              onClick={() => {
-                setOpenRegisterForm(true);
-                setChosenRole("customer");
-              }}
-            >
-              Sou Cliente
-            </Button>
-            <Button
-              onClick={() => {
-                setOpenRegisterForm(true);
-                setChosenRole("business");
-              }}
-            >
-              Sou Barbearia/Salão
-            </Button>
-          </div>
-        </div>
+      <section id="search">
+        <Input
+          icon={FaSearch}
+          label="Pesquise por salões/barbearias ou serviços próximos de você"
+          placeholder="Pesquise por salões/barbearias ou serviços"
+          id="search"
+          srOnly
+        />
       </section>
     </Container>
   );

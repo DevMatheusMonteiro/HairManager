@@ -1,22 +1,23 @@
 import { Container } from "./styles";
 
 export function Input({
+  errorMessage,
   label,
   id,
   icon: Icon,
   srOnly = false,
-  error = false,
   ...rest
 }) {
   return (
-    <Container $srOnly={srOnly} className="input-component">
+    <Container className={`input-component ${id}`}>
       <label data-sronly={srOnly} htmlFor={id}>
         {label}
       </label>
-      <div className="input-wrapper">
+      <div className={`input-wrapper ${errorMessage && "error"}`}>
         {Icon && <Icon />}
-        <input data-error={error} id={id} {...rest} />
+        <input id={id} {...rest} />
       </div>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
     </Container>
   );
 }

@@ -1,4 +1,3 @@
-import { MdExposurePlus1 } from "react-icons/md";
 import { supabase } from "../supabaseClient";
 import { updateBusiness } from "./businessService";
 import { updateCustomer } from "./custormerService";
@@ -29,9 +28,7 @@ export async function findUserById(id) {
     .select("*")
     .eq("id", id)
     .single();
-
   if (error) throw error;
-
   return data;
 }
 
@@ -41,30 +38,32 @@ export async function createUser({
   name,
   telephone,
   role = "customer",
-  extra = {},
+  extra,
+  address,
 }) {
-  const { data: profileData, error: profileError } = await supabase
-    .from("profiles")
-    .insert([{ id, email, name, telephone, role }]);
-
-  console.log();
+  const { data: profileData, error: profileError } = await supabase.rpc(
+    "create_profile_with_address",
+    { p_input: { id, email, name, telephone, role, extra, address } }
+  );
 
   if (profileError) throw profileError;
 
-  let roleTable =
-    role === "admin"
-      ? "admins"
-      : role === "business"
-      ? "businesses"
-      : "customers";
+  // let roleTable =
+  //   role === "admin"
+  //     ? "admins"
+  //     : role === "business"
+  //     ? "businesses"
+  //     : "customers";
 
-  const { data: roleData, error: roleError } = await supabase
-    .from(roleTable)
-    .insert([{ id: id, ...extra }]);
+  // const { data: roleData, error: roleError } = await supabase
+  //   .from(roleTable)
+  //   .insert([{ id: id, ...extra }])
+  //   .select()
+  //   .single();
 
-  if (roleError) throw roleError;
-
-  return { ...profileData[0], ...roleData[0] };
+  // if (roleError) throw roleError;
+  console.log(profileData);
+  return profileData;
 }
 
 export async function updateUser({

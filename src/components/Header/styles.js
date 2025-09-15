@@ -17,21 +17,23 @@ export const Container = styled.header`
       max-width: 60px;
     }
 
+    .navigation {
+      display: none;
+    }
+
     .container-buttons {
       display: flex;
       gap: 2rem;
+      .textButton-component {
+        text-transform: lowercase;
+      }
       .auth-buttons {
         display: flex;
         align-items: center;
         justify-content: center;
 
-        .button-component {
+        .textButton-component {
           color: ${({ theme }) => theme.colors.textPrimary};
-          background: none;
-          font-size: clamp(1.4rem, 3vw, 1.6rem);
-          padding: 0;
-          text-transform: lowercase;
-          height: max-content;
         }
 
         .border {
@@ -39,6 +41,12 @@ export const Container = styled.header`
           border-right: 1px solid ${({ theme }) => theme.colors.textPrimary};
           margin: 0 0.4rem;
         }
+      }
+    }
+
+    @media (min-width: 700px) {
+      .navigation {
+        display: block;
       }
     }
   }
