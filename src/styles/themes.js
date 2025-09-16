@@ -1,5 +1,3 @@
-// src/styles/themes.js
-
 export const darkTheme = {
   title: "dark",
   colors: {
@@ -9,6 +7,7 @@ export const darkTheme = {
     primary: "#E63946",
     primaryHover: "#e63947b2",
     secondary: "#00B4D8",
+    secondaryHover: "#00b4d89f",
     accent: "#B0B0B0",
     textPrimary: "#FFFFFF",
     textSecondary: "#CCCCCC",
@@ -45,6 +44,7 @@ export const lightTheme = {
     primary: "#E63946",
     primaryHover: "#e63947b2",
     secondary: "#00B4D8",
+    secondaryHover: "#00b4d89f",
     accent: "#4A4A4A",
     textPrimary: "#121212",
     textSecondary: "#555555",

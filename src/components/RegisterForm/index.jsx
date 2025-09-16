@@ -7,18 +7,17 @@ import {
   FaWindowClose,
   FaFingerprint,
 } from "react-icons/fa";
-import Select from "react-select";
 import { listUfs } from "../../services/ibgeService";
 import { getAddressByZipCode } from "../../services/viaCep";
-import { MdOutlineDescription } from "react-icons/md";
 import { Input } from "../Input";
 import { Button } from "../Button";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IconButton } from "../IconButton";
 import { TextButton } from "../TextButton";
 import { Textarea } from "../TextArea";
+import { Select } from "../Select";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import { useAuth } from "../../hooks/authContext";
 
@@ -50,11 +49,13 @@ export function RegisterForm({
 }) {
   const {
     register: useFormRegister,
+    control,
     handleSubmit,
     reset,
     watch,
     setValue,
     setError,
+    setFocus,
     clearErrors,
     formState: { errors },
   } = useForm({
@@ -115,8 +116,8 @@ export function RegisterForm({
       containerRef.current.style.position = "absolute";
     } else {
       containerRef.current.style.position = "relative";
-      inputRef.current?.focus();
-      // fetchUfs();
+      setFocus("name");
+      fetchUfs();
     }
   }, [open]);
 
@@ -124,16 +125,10 @@ export function RegisterForm({
     <Container $open={open} ref={containerRef}>
       <IconButton icon={FaWindowClose} onClick={onClose} />
       <h2>Cadastro de {role == "customer" ? "Cliente" : "Negócio"}</h2>
-      <Form
-        onSubmit={handleSubmit(() => {
-          console.log(errors);
-          handleRegister();
-        })}
-      >
+      <Form onSubmit={handleSubmit(handleRegister)}>
         <div className="personalInfo-group">
           <Input
             errorMessage={errors.name?.message}
-            ref={inputRef}
             disabled={!open}
             value={watch("name")}
             {...useFormRegister("name", { required: "Nome é obrigatório" })}
@@ -209,7 +204,6 @@ export function RegisterForm({
               disabled={!open}
               value={watch("extra.description")}
               {...useFormRegister("extra.description", {})}
-              icon={MdOutlineDescription}
               label="Descrição"
               id="descriptionRegister"
             />
@@ -287,7 +281,25 @@ export function RegisterForm({
               id="cityRegister"
               type="text"
             />
-            <Input
+            <Controller
+              name="address.state"
+              control={control}
+              rules={{ required: "UF é obrigatória" }}
+              render={({ field, fieldState }) => (
+                <Select
+                  errorMessage={fieldState.error?.message}
+                  id="stateRegister"
+                  label="UF"
+                  options={ufs}
+                  getOptionLabel={(opt) => opt.sigla}
+                  getOptionValue={(opt) => opt.id}
+                  value={ufs.find((uf) => uf.sigla === field.value) || null}
+                  onChange={(val) => field.onChange(val?.sigla)}
+                  placeholder=""
+                />
+              )}
+            />
+            {/* <Input
               errorMessage={errors.address?.state?.message}
               disabled={!open}
               value={watch("address.state")}
@@ -297,7 +309,7 @@ export function RegisterForm({
               label="UF"
               id="stateRegister"
               type="text"
-            />
+            /> */}
           </div>
         </div>
         <div className="password-group">

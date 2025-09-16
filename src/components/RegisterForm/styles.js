@@ -6,7 +6,7 @@ export const Container = styled.div`
   transition: scale ${({ theme }) => theme.transitions.normal};
   position: relative;
   inset: 0;
-  padding: 2rem 4rem;
+  padding: 4rem;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -86,7 +86,6 @@ export const Form = styled.form`
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.6rem;
-
       .textarea-component {
         grid-column: span 2;
       }
@@ -107,7 +106,7 @@ export const Form = styled.form`
 
     .password-group {
       grid-template-columns: repeat(2, 1fr);
-      align-items: flex-end;
+      /* align-items: flex-start; */
     }
 
     .button-component {
