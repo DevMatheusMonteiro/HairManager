@@ -26,10 +26,9 @@ export async function findUserById(id) {
   const { data, error } = await supabase
     .from("profiles_with_roles")
     .select("*")
-    .eq("id", id)
-    .single();
+    .eq("id", id);
   if (error) throw error;
-  return data;
+  return data[0];
 }
 
 export async function createUser({
@@ -48,21 +47,6 @@ export async function createUser({
 
   if (profileError) throw profileError;
 
-  // let roleTable =
-  //   role === "admin"
-  //     ? "admins"
-  //     : role === "business"
-  //     ? "businesses"
-  //     : "customers";
-
-  // const { data: roleData, error: roleError } = await supabase
-  //   .from(roleTable)
-  //   .insert([{ id: id, ...extra }])
-  //   .select()
-  //   .single();
-
-  // if (roleError) throw roleError;
-  console.log(profileData);
   return profileData;
 }
 

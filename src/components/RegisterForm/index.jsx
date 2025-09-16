@@ -67,11 +67,9 @@ export function RegisterForm({
   const [ufs, setUfs] = useState([]);
   const { register } = useAuth();
   const containerRef = useRef();
-  const inputRef = useRef();
 
   async function handleRegister() {
     try {
-      console.log(watch());
       const payload = watch();
       await register({
         ...payload,
