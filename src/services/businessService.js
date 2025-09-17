@@ -1,6 +1,6 @@
 import { supabase } from "../supabaseClient";
 
-const table = "businesses";
+const table = "profiles_with_roles";
 
 export async function findBusinessById(id) {
   const { data, error } = await supabase
@@ -10,6 +10,40 @@ export async function findBusinessById(id) {
     .single();
 
   if (error) throw error;
+
+  return data;
+}
+
+export async function searchBusinessAndServices(query) {
+  const { data: businessData, error: businessError } = await supabase
+    .from(table)
+    .select("*")
+    .eq("role", "business");
+
+  if (businessError) throw businessError;
+
+  const { data: servicesData, error: servicesError } = await supabase
+    .from("services")
+    .select("*");
+
+  if (servicesError) throw servicesError;
+
+  const businessWithServices = businessData.map((business) => ({
+    ...business,
+    services: servicesData.filter(
+      (service) => service.business_id === business.id
+    ),
+  }));
+
+  const data = businessWithServices.filter((b) => {
+    const businessesByName = b.name.toLowerCase().includes(query.toLowerCase());
+    const servicesByName =
+      b.services.filter((s) =>
+        s.name.toLowerCase().includes(query.toLowerCase())
+      ).length > 0;
+
+    return businessesByName || servicesByName;
+  });
 
   return data;
 }

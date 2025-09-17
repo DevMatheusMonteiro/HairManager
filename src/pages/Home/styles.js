@@ -7,4 +7,8 @@ export const Container = styled.main`
   h3 {
     font-family: ${({ theme }) => theme.fonts.secondary};
   }
+
+  #search {
+    padding: 2.4rem 2rem;
+  }
 `;
