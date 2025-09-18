@@ -4,6 +4,7 @@ import { searchBusinessAndServices } from "../../services/businessService";
 import { useEffect, useState } from "react";
 
 import { Input } from "../../components/Input";
+import { BusinessCard } from "../../components/BusinessCard";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -35,14 +36,7 @@ export default function Home() {
       </section>
       <section id="business">
         {data.length > 0 &&
-          data.map((item) => (
-            <div className="card-business" key={item.id}>
-              <h3>{item.name}</h3>
-              <div>
-                <p>{item.description}</p>
-              </div>
-            </div>
-          ))}
+          data.map((item) => <BusinessCard key={item.id} data={item} />)}
       </section>
     </Container>
   );

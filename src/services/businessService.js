@@ -28,8 +28,15 @@ export async function searchBusinessAndServices(query) {
 
   if (servicesError) throw servicesError;
 
+  const { data: businessHoursData, error: businessHoursError } = await supabase
+    .from("business_hours")
+    .select("*");
+
+  if (businessHoursError) throw businessHoursError;
+
   const businessWithServices = businessData.map((business) => ({
     ...business,
+    hours: businessHoursData.filter((hour) => hour.business_id === business.id),
     services: servicesData.filter(
       (service) => service.business_id === business.id
     ),
