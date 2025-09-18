@@ -6,7 +6,10 @@ import timezone from "dayjs/plugin/timezone.js";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
+import { useNavigate } from "react-router-dom";
+
 export function BusinessCard({ data }) {
+  const navigate = useNavigate();
   function getDayOfWeek(day) {
     return ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"][day];
   }
@@ -21,7 +24,7 @@ export function BusinessCard({ data }) {
       .format("HH:mm");
   }
   return (
-    <Container onClick={(e) => console.log(e)}>
+    <Container onClick={() => navigate(`/business-detail/${data.id}`)}>
       <h3>{data.name}</h3>
       <p>{data.description}</p>
 

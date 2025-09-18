@@ -21,6 +21,7 @@ export const Container = styled.div`
     overflow: auto;
     padding-bottom: 0.4rem;
     display: flex;
+    justify-content: space-around;
     gap: 0.4rem;
     margin-top: 2.4rem;
     align-items: flex-start;

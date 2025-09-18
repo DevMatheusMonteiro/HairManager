@@ -1,12 +1,13 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import { findUserById, createUser } from "../services/userService";
+import { findUserById } from "../services/userService";
 import { register, login, logout } from "../services/authService";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState();
 
   async function fetchProfile() {
@@ -19,8 +20,16 @@ export function AuthProvider({ children }) {
   }
 
   async function getSession() {
-    const { data } = await supabase.auth.getSession();
-    setUser(data.session?.user ?? null);
+    setLoading(true);
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.error(error);
+      setUser(null);
+    } else {
+      setUser(data.session?.user ?? null);
+    }
+
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -28,9 +37,10 @@ export function AuthProvider({ children }) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) =>
-      setUser(session?.user ?? null)
-    );
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
 
     return () => subscription.unsubscribe();
   }, []);
@@ -39,7 +49,9 @@ export function AuthProvider({ children }) {
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, profile, register, login, logout }}>
+    <AuthContext.Provider
+      value={{ loading, user, profile, register, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
