@@ -1,34 +1,62 @@
-import styled from "styled-components";
+import { createTheme } from "@mui/material/styles";
 
-import { TextField } from "@mui/material";
-
-export const StyledTextField = styled(TextField)`
-  && {
-    width: 100%;
-    max-width: 200px;
-
-    .MuiInputBase-root {
-      border-radius: ${({ theme }) => theme.radius.medium};
-      background: ${({ theme }) => theme.colors.surface};
-    }
-
-    .MuiOutlinedInput-notchedOutline {
-      border-color: ${({ theme }) => theme.colors.border};
-    }
-
-    &:hover .MuiOutlinedInput-notchedOutline {
-      border-color: ${({ theme }) => theme.colors.border};
-    }
-
-    .Mui-focused .MuiOutlinedInput-notchedOutline {
-      border-color: #1976d2;
-      /* border-width: 2px; */
-    }
-
-    input {
-      font-size: 14px;
-      color: ${({ theme }) => theme.colors.textPrimary};
-      padding: 10px 14px;
-    }
-  }
-`;
+export const dateTimePickerTheme = (theme) => {
+  if (!theme) return;
+  return createTheme({
+    palette: {
+      primary: {
+        main: theme.colors.primary,
+      },
+      background: {
+        default: theme.colors.surface,
+        paper: theme.colors.surface,
+      },
+      text: {
+        primary: theme.colors.textPrimary,
+        secondary: theme.colors.textSecondary,
+      },
+    },
+    typography: {
+      fontFamily: theme.fonts.secondary,
+      fontSize: "clamp(1.4rem,3vw,1.6rem)",
+    },
+    components: {
+      // MuiPickersDay: {
+      //   styleOverrides: {
+      //     root: {
+      //       borderRadius: 8,
+      //       "&.Mui-selected": {
+      //         backgroundColor: "#bb86fc",
+      //         color: "#000",
+      //       },
+      //       "&.Mui-selected:hover": {
+      //         backgroundColor: "#9f6efc",
+      //       },
+      //       "&.Mui-disabled": {
+      //         color: "#555",
+      //       },
+      //       "&.MuiPickersDay-today": {
+      //         borderColor: "#bb86fc",
+      //       },
+      //     },
+      //   },
+      // },
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            borderRadius: theme.radius.large,
+            boxShadow: theme.shadows.xl,
+          },
+        },
+      },
+      MuiPickersToolbar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: theme.colors.primary,
+            color: theme.colors.textPrimary,
+          },
+        },
+      },
+    },
+  });
+};

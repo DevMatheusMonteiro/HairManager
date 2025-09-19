@@ -1,22 +1,14 @@
-import { StyledTextField } from "./styles";
-
+import { ThemeProvider } from "@mui/material/styles";
+import { useTheme } from "styled-components";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import TextField from "@mui/material/TextField";
 
-export function DateTime({ label, selectedDateTime, onChange }) {
+import { dateTimePickerTheme } from "./styles";
+
+export function DateTime({ value, onChange }) {
+  const theme = dateTimePickerTheme(useTheme());
   return (
-    <>
-      <DateTimePicker
-        label={label}
-        value={selectedDateTime}
-        onChange={onChange}
-        format="DD/MM/YYYY HH:mm"
-        ampm={false}
-        text
-        slots={{
-          textField: (params) => <StyledTextField {...params} />,
-        }}
-      />
-    </>
+    <ThemeProvider theme={theme}>
+      <DateTimePicker ampm={false} value={value} onChange={onChange} />
+    </ThemeProvider>
   );
 }
