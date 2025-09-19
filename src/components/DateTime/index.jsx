@@ -4,11 +4,16 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 import { dateTimePickerTheme } from "./styles";
 
-export function DateTime({ value, onChange }) {
+export function DateTime({ label, value, onChange }) {
   const theme = dateTimePickerTheme(useTheme());
   return (
     <ThemeProvider theme={theme}>
-      <DateTimePicker ampm={false} value={value} onChange={onChange} />
+      <DateTimePicker
+        label={label}
+        ampm={false}
+        value={value}
+        onChange={onChange}
+      />
     </ThemeProvider>
   );
 }

@@ -5,7 +5,7 @@ export const dateTimePickerTheme = (theme) => {
   return createTheme({
     palette: {
       primary: {
-        main: theme.colors.primary,
+        main: theme.colors.secondary,
       },
       background: {
         default: theme.colors.surface,
@@ -17,8 +17,10 @@ export const dateTimePickerTheme = (theme) => {
       },
     },
     typography: {
+      allVariants: {
+        fontSize: "clamp(1.4rem,3vw,1.6rem)",
+      },
       fontFamily: theme.fonts.secondary,
-      fontSize: "clamp(1.4rem,3vw,1.6rem)",
     },
     components: {
       // MuiPickersDay: {
@@ -53,6 +55,13 @@ export const dateTimePickerTheme = (theme) => {
         styleOverrides: {
           root: {
             backgroundColor: theme.colors.primary,
+            color: theme.colors.textPrimary,
+          },
+        },
+      },
+      MuiIcon: {
+        styleOverrides: {
+          root: {
             color: theme.colors.textPrimary,
           },
         },
