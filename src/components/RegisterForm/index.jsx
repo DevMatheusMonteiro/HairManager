@@ -297,17 +297,6 @@ export function RegisterForm({
                 />
               )}
             />
-            {/* <Input
-              errorMessage={errors.address?.state?.message}
-              disabled={!open}
-              value={watch("address.state")}
-              {...useFormRegister("address.state", {
-                required: "UF é obrigatória",
-              })}
-              label="UF"
-              id="stateRegister"
-              type="text"
-            /> */}
           </div>
         </div>
         <div className="password-group">

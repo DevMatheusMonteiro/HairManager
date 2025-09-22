@@ -8,6 +8,9 @@ export function Select({
   getOptionValue,
   srOnly,
   errorMessage,
+  isClearable = false,
+  disabled = false,
+  filterOption,
   ...rest
 }) {
   return (
@@ -16,6 +19,8 @@ export function Select({
         {label}
       </label>
       <StyledSelect
+        isDisabled={disabled}
+        filterOption={filterOption}
         $error={errorMessage}
         className="select-wrapper"
         classNamePrefix="select"
@@ -23,6 +28,12 @@ export function Select({
         inputId={id}
         getOptionLabel={getOptionLabel}
         getOptionValue={getOptionValue}
+        isClearable={isClearable}
+        noOptionsMessage={({ inputValue }) =>
+          inputValue
+            ? `Nenhuma opção encontrada para "${inputValue}"`
+            : "Nenhuma opção disponível"
+        }
         {...rest}
       />
       {errorMessage && <span className="error-message">{errorMessage}</span>}

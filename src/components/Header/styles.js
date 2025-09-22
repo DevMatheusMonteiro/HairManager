@@ -2,16 +2,20 @@ import styled from "styled-components";
 
 export const Container = styled.header`
   grid-area: header;
+  display: flex;
   background: ${({ theme }) => theme.colors.surface};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  padding: 0 2rem;
   .wrapper {
+    .logo-button {
+      display: flex;
+    }
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
-    padding: 1.6rem 2rem;
     img {
       width: 100%;
       max-width: 60px;
