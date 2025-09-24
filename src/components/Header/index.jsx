@@ -14,10 +14,12 @@ export function Header({ openSidebar, setOpenSidebar }) {
   const { user, profile, logout } = useAuth();
   return (
     <Container>
-      <IconButton
-        icon={IoMdMenu}
-        onClick={() => setOpenSidebar(!openSidebar)}
-      />
+      {user && (
+        <IconButton
+          icon={IoMdMenu}
+          onClick={() => setOpenSidebar(!openSidebar)}
+        />
+      )}
       <div className="wrapper">
         <img src={logo} alt="Logo HairManager" title="Logo HairManager" />
 
