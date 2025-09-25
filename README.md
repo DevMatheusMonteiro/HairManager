@@ -1,23 +1,18 @@
-# 💇‍♂️ Hair Manager
+# 💇‍♂️ Hair Manager Web
 
-O **Hair Manager** é uma aplicação web desenvolvida para facilitar o controle de agendamentos em salões de beleza e barbearias. Esta versão contempla o **front-end** do projeto, desenvolvido com foco em **mobile first**, garantindo uma boa experiência em dispositivos móveis e expandindo para telas maiores.
+Aplicação web desenvolvida em React com Vite, permitindo que clientes encontrem salões e barbearias, visualizem serviços disponíveis e realizem agendamentos diretamente pelo navegador.
 
-## Funcionalidades (em desenvolvimento)
+## 🚀 Tecnologias Utilizadas
 
-- Cadastro e login de clientes e profissionais
-- Visualização da agenda diária
-- Agendamento de serviços
-- Edição e cancelamento de agendamentos
-- Painel administrativo para profissionais
-
----
-
-## Tecnologias utilizadas
-
-- **React** – Biblioteca JavaScript para construção de interfaces de usuário
-- **React Router DOM** – Gerenciamento de rotas
-- **Styled Components** – Estilização com CSS-in-JS
-- **React Icons** – Ícones customizáveis
+- React `19.1.0`
+- Vite `7.0.0`
+- React Router DOM `7.9.1`
+- Supabase (autenticação e banco de dados)
+- React Hook Form (formulários)
+- Styled-components (estilização)
+- React Select
+- React DateTime Picker
+- Day.js (manipulação de datas)
 
 ---
 
@@ -39,7 +34,7 @@ O design do projeto foi construído com base na abordagem **Mobile First**, gara
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/DevMatheusMonteiro/HairManager
+git clone https://github.com/DevMatheusMonteiro/HairManager.git
 ```
 
 2. Acesse o diretório do projeto:
@@ -52,7 +47,11 @@ cd HairManager
 
 ```bash
 npm install
-# ou
+```
+
+ou
+
+```bash
 yarn install
 ```
 
@@ -60,37 +59,44 @@ yarn install
 
 ```bash
 npm run dev
-# ou
+```
+
+ou
+
+```
 yarn dev
 ```
 
-A aplicação será executada em `http://localhost:5173` (ou conforme configurado no Vite ou CRA).
+A aplicação será executada em `http://localhost:5173` (ou conforme configurado no Vite).
 
 ---
 
-## 📁 Estrutura de pastas
+## 👥 Usuários de Teste
 
-```bash
-src/
-├── assets/             # Imagens e ícones
-├── components/         # Componentes reutilizáveis
-├── pages/              # Páginas da aplicação
-├── routes/             # Configuração de rotas
-├── styles/             # Estilos globais
-└── main.jsx            # Ponto de entrada da aplicação
-```
+O sistema já possui usuários cadastrados para testes de autenticação.
+Todos utilizam a senha padrão: `123456`
 
----
+### 📌 Salões
 
-## 🚀 Próximos passos
+- `salao1@email.com` → até `salao5@email.com`
 
-- Integração com API do back-end
-- Validação de formulários
-- Gerenciamento de autenticação com JWT
-- Painel de administração completo
-- Controle de disponibilidade e horários
+### 📌 Barbearias
 
----
+- `barbearia1@email.com` → até `barbearia5@email.com`
+
+### 📌 Clientes
+
+- `cliente1@email.com` → até `cliente10@email.com`
+
+## 📱 Funcionalidades
+
+- 🔎 Pesquisa de salões/barbearias e serviços
+
+- 📅 Agendamento de serviços com seleção de data/hora
+
+- 👤 Autenticação e gerenciamento de usuário via Supabase
+
+- 🎨 Interface estilizada com styled-components
 
 ## 📬 Contato
 
