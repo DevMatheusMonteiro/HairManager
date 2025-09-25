@@ -4,10 +4,11 @@ import { FaXmark } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
 import { useAuth } from "../../hooks/authContext";
 import { TextButton } from "../TextButton";
+import { useNavigate } from "react-router-dom";
 
 export function Sidebar({ open, onClose }) {
-  const { logout } = useAuth();
-
+  const { logout, profile } = useAuth();
+  const navigate = useNavigate();
   return (
     <Container $open={open}>
       <div className="wrapper">
@@ -26,11 +27,26 @@ export function Sidebar({ open, onClose }) {
         <nav>
           <ul>
             <li>
-              <TextButton title="Meus Agendamentos" />
+              <TextButton
+                title="Home"
+                onClick={() => {
+                  navigate("/");
+                  onClose();
+                }}
+              />
             </li>
-            <li>
-              <TextButton title="Perfil" />
-            </li>
+
+            {profile?.role === "customer" && (
+              <li>
+                <TextButton
+                  title="Meus Agendamentos"
+                  onClick={() => {
+                    navigate("my-appointments");
+                    onClose();
+                  }}
+                />
+              </li>
+            )}
           </ul>
         </nav>
       </div>

@@ -11,7 +11,7 @@ import { TextButton } from "../TextButton";
 export function Header({ openSidebar, setOpenSidebar }) {
   const { toggleTheme, theme } = useTheme();
   const { setOpenLoginForm, setOpenRoleSelection } = useAuthModal();
-  const { user, profile, logout } = useAuth();
+  const { user } = useAuth();
   return (
     <Container>
       {user && (
